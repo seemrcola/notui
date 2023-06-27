@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true, // 是否允许编译器编译JS，JSX文件
+    "lib": ["ESNext", "DOM", "DOM.Iterable"] // 指定项目运行时使用的库
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.vue",
+    "**/*.tsx",
+    "*.d.ts"
+  ]
+}
