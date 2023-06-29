@@ -63,7 +63,7 @@ init()
 
 如果使用dynamic模式，需要在元素中传入一个`data-index`属性  
 如下
-``vue
+```vue
 <script setup lang='ts'>
 import { useVirtualList } from './useVirtualList'
 
