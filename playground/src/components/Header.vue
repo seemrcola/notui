@@ -3,5 +3,7 @@
 </script>
 
 <template>
-  <div>hello world</div>
+  <div h="60px" flex-center b-b>
+    NOTui Playground
+  </div>
 </template>

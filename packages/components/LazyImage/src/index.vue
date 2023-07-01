@@ -52,8 +52,12 @@ onMounted(() => {
     <div
       v-for="(item, idx) of lazyList" :key="`the-${idx}-list`"
       :style="{ width: `${props.colWidth}px` }"
+      :class="bem.element('list')"
     >
-      <div v-for="(imageinfo, index) of item" :key="`the-${index}-image`">
+      <div
+        v-for="(imageinfo, index) of item" :key="`the-${index}-image`"
+        :class="bem.element('list-item')"
+      >
         <img
           :data-src="imageinfo.url"
           :class="imgClassName"
@@ -62,7 +66,7 @@ onMounted(() => {
             height: `${imageinfo.renderHeight}px`,
           }"
         >
-        <p v-if=" imageinfo.desc">
+        <p v-if=" imageinfo.desc" :class="bem.element('list-item-desc')">
           {{ imageinfo.desc }}
         </p>
       </div>

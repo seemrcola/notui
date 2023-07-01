@@ -53,6 +53,9 @@ importers:
       '@vue/repl':
         specifier: ^2.3.0
         version: 2.3.0
+      notui:
+        specifier: workspace:^
+        version: link:..
       unocss:
         specifier: ^0.53.3
         version: 0.53.3(postcss@8.4.24)(vite@4.3.9)
