@@ -22,7 +22,6 @@ public/build/
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon
 ._*
 .Spotlight-V100
 .Trashes
@@ -47,7 +46,7 @@ Thumbs.db
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon
+
 ._*
 .Spotlight-V100
 .Trashes
