@@ -9,11 +9,13 @@ export default defineConfig({
     lib: {
       entry: 'index.ts',
       name: '@notui/components',
+      formats: ['cjs', 'es'],
+      fileName: format => format === 'es' ? 'notui.mjs' : 'notui.cjs',
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue'], // 将 'vue' 设为外部依赖
       output: {
-        globals: {
+        globals: { // // 在全局作用域下将 'vue' 映射为 'Vue'
           vue: 'Vue',
         },
       },
