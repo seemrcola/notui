@@ -9,6 +9,7 @@ export default defineConfig({
   build: {
     target: 'modules',
     rollupOptions: {
+      external: ['vue'],
       input: [
         'Icon/icon.ts',
         'LazyImage/lazy-image.ts',
