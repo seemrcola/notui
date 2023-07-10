@@ -27,6 +27,6 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    css({ output: 'bundle.css' }),
+    css({ output: 'notui.css' }),
   ],
 })
