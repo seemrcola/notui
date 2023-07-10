@@ -1,33 +1,27 @@
-import { defineConfig } from 'vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
-// @ts-expect-error
-import css from 'rollup-plugin-css-only'
+import Unocss from '@unocss/vite'
 
 export default defineConfig({
   build: {
-    target: 'modules',
+    emptyOutDir: false,
+    lib: {
+      entry: 'index.ts',
+      name: '@notui/components',
+    },
     rollupOptions: {
       external: ['vue'],
-      input: [
-        'Icon/icon.ts',
-        'LazyImage/lazy-image.ts',
-        'TiresomeTag/tiresome-tag.ts',
-        'Moveable/moveable.ts',
-      ],
-      output: [
-        {
-          format: 'es',
-          dir: 'dist/es',
-          entryFileNames: '[name].js',
+      output: {
+        globals: {
+          vue: 'Vue',
         },
-      ],
+      },
     },
   },
   plugins: [
     vue(),
     vueJsx(),
-    css({ output: 'notui.css' }),
+    Unocss(),
   ],
 })

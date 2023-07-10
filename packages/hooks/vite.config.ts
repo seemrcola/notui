@@ -10,20 +10,3 @@ export default defineConfig({
   },
   plugins: [],
 })
-
-// export default defineConfig({
-//   build: {
-//     rollupOptions: {
-//       input: [
-//         'index.ts',
-//       ],
-//       output: [
-//         {
-//           format: 'es',
-//           dir: 'dist/es',
-//           entryFileNames: '[name].js',
-//         },
-//       ],
-//     },
-//   },
-// })

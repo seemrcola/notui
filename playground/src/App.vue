@@ -1,17 +1,16 @@
 <script setup lang='ts'>
-import NoMoveable from '@notui/components/Moveable/moveable'
-import Tiresome from '@notui/components/TiresomeTag/tiresome-tag'
-import Icon from '@notui/components/Icon/icon'
+import { NoIcon, NoMoveable, NoTiresomeTag } from '@notui/components/dist/components.mjs'
+import '@notui/components/dist/style.css'
 import Header from './components/Header.vue'
 </script>
 
 <template>
-  <Header bg="gray-100" />
+  <Header w-full bg="gray-100" />
   <div w-full h="[calc(100vh-60px)]" flex-center>
-    <Icon name="i-material-symbols:bookmark-remove-outline" />
+    <NoIcon name="i-material-symbols:bookmark-remove-outline" />
     <NoMoveable text-center>
       1000
     </NoMoveable>
-    <Tiresome />
+    <NoTiresomeTag />
   </div>
 </template>

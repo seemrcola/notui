@@ -1,3 +1,6 @@
-export * from './Icon/icon'
-export * from './LazyImage/lazy-image'
-export * from './TiresomeTag/tiresome-tag'
+import 'uno.css'
+
+export * from './Icon'
+export * from './LazyImage'
+export * from './TiresomeTag'
+export * from './Moveable'
