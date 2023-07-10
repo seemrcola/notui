@@ -1,7 +1,7 @@
 <script setup lang='ts'>
-import NoMoveable from '@notui/components/Moveable'
-import Tiresome from '@notui/components/TiresomeTag'
-import Icon from '@notui/components/Icon'
+import NoMoveable from '@notui/components/Moveable/moveable'
+import Tiresome from '@notui/components/TiresomeTag/tiresome-tag'
+import Icon from '@notui/components/Icon/icon'
 import Header from './components/Header.vue'
 </script>
 
