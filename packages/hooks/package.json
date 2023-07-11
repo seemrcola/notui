@@ -7,7 +7,7 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build & npx tsc"
   },
   "dependencies": {
     "vite": "^4.3.9"

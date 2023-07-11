@@ -1,6 +1,5 @@
-import { withInstall } from '@notui/utils'
 import Moveable from './src/index.vue'
 
-export const NoMoveable = withInstall({ ...Moveable, name: 'NoMoveable' })
+export const NoMoveable = Moveable
 
 export * from './src/props'

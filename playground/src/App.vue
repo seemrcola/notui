@@ -1,6 +1,5 @@
 <script setup lang='ts'>
-import { NoIcon, NoMoveable, NoTiresomeTag } from '@notui/components/dist/notui.mjs'
-import '@notui/components/dist/style.css'
+import { NoIcon, NoMoveable, NoTiresomeTag } from '@notui/components/dist/es/notui.mjs'
 import Header from './components/Header.vue'
 </script>
 

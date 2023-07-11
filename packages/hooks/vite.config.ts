@@ -4,7 +4,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: 'index.ts',
-      name: 'index',
+      name: '@notui/hooks',
     },
     minify: false,
   },

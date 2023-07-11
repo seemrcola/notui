@@ -1,6 +1,5 @@
-import { withInstall } from '@notui/utils'
 import TTag from './src/index.vue'
 
-export const NoTiresomeTag = withInstall({ ...TTag, name: 'NoTiresomeTag' })
+export const NoTiresomeTag = TTag
 
 export * from './src/props'
