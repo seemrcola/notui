@@ -10,7 +10,7 @@ export default defineConfig({
       entry: 'index.ts',
       name: '@notui/components',
       formats: ['cjs', 'es'],
-      fileName: format => format === 'es' ? 'notui.mjs' : 'notui.cjs',
+      fileName: format => format === 'es' ? 'es/notui.mjs' : 'lib/notui.cjs',
     },
     rollupOptions: {
       external: ['vue'], // 将 'vue' 设为外部依赖

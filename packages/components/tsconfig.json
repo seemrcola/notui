@@ -1,5 +1,9 @@
 {
   "extends": "../../tsconfig.json",
+  "exclude": [
+    "**/dist/**",
+    "./unocss.config.ts"
+  ],
   "include": [
     "**/*.ts",
     "**/*.d.ts",

@@ -5,7 +5,12 @@
   "author": "seemrcola",
   "license": "ISC",
   "keywords": [],
-  "main": "index.js",
+  "main": "./dist/lib/notui.cjs",
+  "module": "./dist/es/notui.mjs",
+  "types": "./dist/components/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build"
   },
