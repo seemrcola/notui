@@ -1,6 +1,3 @@
-/*
-* 注意：将需要drag的元素telleport到body下, 传入dom即可实现拖拽
-*/
 import type { Ref } from 'vue'
 import { ref, watch } from 'vue'
 
