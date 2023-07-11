@@ -72,6 +72,9 @@ importers:
       '@notui/components':
         specifier: workspace:^
         version: link:../packages/components
+      '@notui/hooks':
+        specifier: workspace:^
+        version: link:../packages/hooks
       '@vue/repl':
         specifier: ^2.3.0
         version: 2.3.0

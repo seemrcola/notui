@@ -12,6 +12,7 @@
   "dependencies": {
     "@iconify/json": "^2.2.82",
     "@notui/components": "workspace:^",
+    "@notui/hooks": "workspace:^",
     "@vue/repl": "^2.3.0",
     "element-plus": "^2.3.7",
     "notui": "workspace:*",
