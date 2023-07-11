@@ -4,15 +4,15 @@
 import type { Ref } from 'vue'
 import { ref, watch } from 'vue'
 
-export interface UseTeleportDragResult {
+export interface UseDragResult {
   mousedownHanlder: (event: MouseEvent) => void
   dragFlag: Ref<boolean>
 }
 
-export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
+export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
   const dragFlag = ref(false)
   const refMounted = ref(false)
-  let skewing: { x: number; y: number }
+  const dragStart = { x: 0, y: 0 }
 
   watch(
     () => domRef.value,
@@ -20,6 +20,10 @@ export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
       if (val && !refMounted.value) {
         refMounted.value = true
         val.addEventListener('mousedown', mousedownHanlder)
+        const { left, top } = domRef.value!.getBoundingClientRect()
+        const { left: parentLeft, top: parentTop } = parentRef.value!.getBoundingClientRect()
+        domRef.value!.style.left = `${left - parentLeft}px`
+        domRef.value!.style.top = `${top - parentTop}px`
       }
     },
   )
@@ -27,9 +31,8 @@ export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
   function mousedownHanlder(e: MouseEvent) {
     dragFlag.value = true
     const { clientX, clientY } = e
-    const rect = domRef.value!.getBoundingClientRect()
-    const { left: preLeft, top: preTop } = rect
-    skewing = { x: clientX - preLeft, y: clientY - preTop }
+    dragStart.x = clientX
+    dragStart.y = clientY
     document.addEventListener('mousemove', mousemoveHanlder)
     document.addEventListener('mouseup', mouseupHanlder)
   }
@@ -37,14 +40,18 @@ export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
     if (!dragFlag.value)
       return
     const { clientX, clientY } = e
-    const { x, y } = skewing
-    const offsetX = clientX - x
-    const offsetY = clientY - y
+    const { x, y } = dragStart
+    const deltaX = clientX - x
+    const deltaY = clientY - y
+    dragStart.x = clientX
+    dragStart.y = clientY
 
     requestAnimationFrame(
       () => {
-        domRef.value!.style.left = `${offsetX}px`
-        domRef.value!.style.top = `${offsetY}px`
+        const currentX = Number.parseInt(domRef.value!.style.left) || 0
+        const currentY = Number.parseInt(domRef.value!.style.top) || 0
+        domRef.value!.style.left = `${currentX + deltaX}px`
+        domRef.value!.style.top = `${currentY + deltaY}px`
       },
     )
   }
