@@ -34,6 +34,8 @@ export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
     document.addEventListener('mouseup', mouseupHanlder)
   }
   function mousemoveHanlder(e: MouseEvent) {
+    e.stopPropagation()
+    e.preventDefault()
     if (!dragFlag.value)
       return
     const { clientX, clientY } = e

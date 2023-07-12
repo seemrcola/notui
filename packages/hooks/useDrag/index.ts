@@ -35,6 +35,9 @@ export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
   }
 
   function mousemoveHanlder(e: MouseEvent) {
+    e.stopPropagation()
+    e.preventDefault()
+
     if (!dragFlag.value)
       return
     const { clientX, clientY } = e
