@@ -11,15 +11,15 @@ export interface UseTeleportDragResult {
 
 export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
   const dragFlag = ref(false)
-  const refMounted = ref(false)
   let skewing: { x: number; y: number }
 
-  watch(
+  const unwatch = watch(
     () => domRef.value,
     (val) => {
-      if (val && !refMounted.value) {
-        refMounted.value = true
+      if (val) {
         val.addEventListener('mousedown', mousedownHanlder)
+
+        unwatch()
       }
     },
   )
@@ -43,8 +43,8 @@ export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
 
     requestAnimationFrame(
       () => {
-        domRef.value!.style.left = `${offsetX}px`
-        domRef.value!.style.top = `${offsetY}px`
+        domRef.value.style.left = `${offsetX}px`
+        domRef.value.style.top = `${offsetY}px`
       },
     )
   }

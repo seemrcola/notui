@@ -8,19 +8,19 @@ export interface UseDragResult {
 
 export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
   const dragFlag = ref(false)
-  const refMounted = ref(false)
   const dragStart = { x: 0, y: 0 }
 
-  watch(
+  const unwatch = watch(
     () => domRef.value,
     (val) => {
-      if (val && !refMounted.value) {
-        refMounted.value = true
+      if (val) {
         val.addEventListener('mousedown', mousedownHanlder)
-        const { left, top } = domRef.value!.getBoundingClientRect()
-        const { left: parentLeft, top: parentTop } = parentRef.value!.getBoundingClientRect()
-        domRef.value!.style.left = `${left - parentLeft}px`
-        domRef.value!.style.top = `${top - parentTop}px`
+        const { left, top } = domRef.value.getBoundingClientRect()
+        const { left: parentLeft, top: parentTop } = parentRef.value.getBoundingClientRect()
+        domRef.value.style.left = `${left - parentLeft}px`
+        domRef.value.style.top = `${top - parentTop}px`
+
+        unwatch()
       }
     },
   )
@@ -33,6 +33,7 @@ export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
     document.addEventListener('mousemove', mousemoveHanlder)
     document.addEventListener('mouseup', mouseupHanlder)
   }
+
   function mousemoveHanlder(e: MouseEvent) {
     if (!dragFlag.value)
       return
@@ -45,8 +46,8 @@ export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
 
     requestAnimationFrame(
       () => {
-        const currentX = Number.parseInt(domRef.value!.style.left) || 0
-        const currentY = Number.parseInt(domRef.value!.style.top) || 0
+        const currentX = Number.parseInt(domRef.value.style.left) || 0
+        const currentY = Number.parseInt(domRef.value.style.top) || 0
         domRef.value!.style.left = `${currentX + deltaX}px`
         domRef.value!.style.top = `${currentY + deltaY}px`
       },
