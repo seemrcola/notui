@@ -8,19 +8,19 @@ interface Options {
   dynamic?: boolean // 是否动态高度
 }
 
-export function useVirtualList(list: any[], selector: string, options: Options) {
+export function useVirtualList<T = any>(list: T[], selector: string, options: Options) {
   let { itemHeight, containerHeight, dynamic = false } = options
   if (dynamic) // 由于用户可能会传一个过大的高度，我们这里做个限制，写死30
     itemHeight = 30
   const HEIGHT_SUM = list.length * itemHeight // 总高度
   const RENDER_COUNT = Math.ceil(containerHeight / itemHeight) // 渲染数量
 
-  const renderList = ref<any[]>([])
+  const renderList = ref<T[]>([])
   const translateY = ref(0)
   const BUFFER = RENDER_COUNT > 15 ? 15 : RENDER_COUNT // 缓冲区设置个最大值
 
-  const dynamicListDesc = ref<any[]>([])
-  const dynamicList = ref<any[]>([])
+  const dynamicListDesc = ref<T[]>([])
+  const dynamicList = ref<T[]>([])
   let filledEl: HTMLElement
 
   function initContainer() {
