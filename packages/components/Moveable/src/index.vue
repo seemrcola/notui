@@ -130,6 +130,7 @@ function mouseupScaleHandler(e: MouseEvent) {
     absolute z-2147483647
     @click="clickHanlder"
     @mousedown="mousedownHandler"
+    @contextmenu.prevent="moveLock = false"
   >
     <slot :class="bem.element('slot')" />
     <template v-for="(item) of orientation" :key="item">
