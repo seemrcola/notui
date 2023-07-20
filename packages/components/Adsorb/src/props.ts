@@ -11,7 +11,15 @@ export const adsorbProps = {
   },
   adsorb: {
     type: Boolean,
-    default: false,
+    default: true,
+  },
+  x: {
+    type: Number,
+    default: 0,
+  },
+  y: {
+    type: Number,
+    default: 0,
   },
 } as const
 
