@@ -72,8 +72,16 @@ function showContent(ifShow: boolean) {
   show.value = true
   nextTick(() => {
     const { width, height } = rect
+    let top = init.value.y - props.height + height / 2
+    // 超过window或者小于0, 则取边界
+    if (top < 0)
+      top = 0
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    if (top > windowRect.height - props.height)
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
+      top = windowRect.height - props.height
     contentRef.value!.style.left = `${init.value.x - props.width + width / 2}px`
-    contentRef.value!.style.top = `${init.value.y - props.height + height / 2}px`
+    contentRef.value!.style.top = `${top}px`
   })
 }
 // -------------------------------------------------------------------
