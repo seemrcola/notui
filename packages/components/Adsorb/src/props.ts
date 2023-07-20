@@ -9,6 +9,10 @@ export const adsorbProps = {
     type: Number,
     default: 200,
   },
+  adsorb: {
+    type: Boolean,
+    default: false,
+  },
 } as const
 
 export type NoAdsorbProps = ExtractPropTypes<typeof adsorbProps>
