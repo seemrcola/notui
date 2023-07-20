@@ -1,7 +1,6 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
 import { useDrag, useTeleportDrag } from '@notui/hooks'
-import Adsorb from '@notui/components/Adsorb/src/index.vue'
 import Header from './components/Header.vue'
 
 const drag = ref(null)
