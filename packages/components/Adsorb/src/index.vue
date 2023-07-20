@@ -1,20 +1,48 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { useTeleportDrag } from '@notui/hooks/useTeleportDrag'
+import { adsorbProps } from './props'
+
+const props = defineProps(adsorbProps)
 
 const show = ref(false)
 const dragRef = ref<HTMLElement | null>(null)
+const contentRef = ref<HTMLElement | null>(null)
 useTeleportDrag(dragRef)
+
+function showContent(ifShow: boolean) {
+  if (!ifShow) {
+    show.value = false
+    return
+  }
+
+  show.value = true
+
+  nextTick(() => {
+    const rect = dragRef.value!.getBoundingClientRect()
+    const { width, height, left, top } = rect
+    const x = left + width / 2
+    const y = top + height / 2
+
+    contentRef.value!.style.left = `${x - (props.width)}px`
+    contentRef.value!.style.top = `${y - (props.height)}px`
+  })
+}
 </script>
 
 <template>
   <div
     v-if="show"
-    class="bg-white text-gray-800 rounded-lg shadow w-max h-min"
-    p="x-2 y-2"
-    m="y-auto r-2"
-    transition="opacity duration-300"
-  />
+    ref="contentRef"
+    :style="{
+      height: `${props.height}px`,
+      width: `${props.width}px`,
+    }"
+    shadow="md"
+    absolute
+  >
+    <slot name="content" />
+  </div>
   <Teleport to="body">
     <div
       ref="dragRef"
@@ -22,7 +50,7 @@ useTeleportDrag(dragRef)
       bg="teal-600 hover:teal-700" flex justify-center
       items-center absolute right-0 bottom="50%"
       transform="translateY(50%)"
-      @click="show = !show"
+      @dblclick="showContent(!show)"
     >
       <div i-ic:outline-send-time-extension text-xl bg-white />
     </div>
