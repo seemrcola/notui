@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, ref } from 'vue'
+import { createNamespace } from '@notui/utils/src/bems'
 import { adsorbProps } from './props'
 
 const props = defineProps(adsorbProps)
+
+const bem = createNamespace('adsorb')
 
 const init = ref({
   x: props.x,
@@ -107,8 +110,13 @@ onMounted(() => {
       shadow="md"
       absolute
       :style="{ height: `${props.height}px`, width: `${props.width}px` }"
+      :class="bem.block('content')"
     >
-      <slot name="content" />
+      <slot name="content" :class="bem.element('slot-content')">
+        <div p-1 text-center>
+          replace me
+        </div>
+      </slot>
     </div>
   </Teleport>
   <Teleport to="body">
@@ -119,10 +127,13 @@ onMounted(() => {
       flex justify-center items-center
       absolute
       :style="computedStyle"
+      :class="bem.block('bar')"
       @dblclick="showContent(!show)"
       @mousedown="mousedownHandler"
     >
-      <div i-ic:outline-send-time-extension text-xl bg-white />
+      <slot name="bar" :class="bem.element('bar-slot')">
+        <div i-ic:outline-send-time-extension text-xl bg-white />
+      </slot>
     </div>
   </Teleport>
 </template>

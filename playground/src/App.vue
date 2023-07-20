@@ -29,7 +29,11 @@ useDrag(drag2, parent)
       />
     </Teleport>
 
-    <Adsorb />
+    <Adsorb>
+      <template #bar>
+        jajaj
+      </template>
+    </Adsorb>
 
     <div
       ref="drag2"
