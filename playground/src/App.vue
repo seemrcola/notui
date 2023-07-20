@@ -7,8 +7,8 @@ import Header from './components/Header.vue'
 const drag = ref(null)
 const drag2 = ref(null)
 const parent = ref(null)
-const { mousedownHanlder } = useTeleportDrag(drag)
-const { mousedownHanlder: mousedownHanlder2 } = useDrag(drag2, parent)
+useTeleportDrag(drag)
+useDrag(drag2, parent)
 </script>
 
 <template>
@@ -26,7 +26,6 @@ const { mousedownHanlder: mousedownHanlder2 } = useDrag(drag2, parent)
       <div
         ref="drag"
         bg-red rounded-full w-10 h-10 absolute
-        @mousedown="mousedownHanlder"
       />
     </Teleport>
 
@@ -35,7 +34,6 @@ const { mousedownHanlder: mousedownHanlder2 } = useDrag(drag2, parent)
     <div
       ref="drag2"
       bg-blue rounded-full w-10 h-10 absolute
-      @mousedown="mousedownHanlder2"
     />
   </div>
 </template>

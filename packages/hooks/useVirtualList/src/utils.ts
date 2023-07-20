@@ -1,5 +1,7 @@
 // 找到第一个大于等于 vitrualOffset 的值的元素
-export function bs(list: any[], vitrualOffset: number) {
+import type { Desc } from './types'
+
+export function bs<T>(list: Desc<T>[], vitrualOffset: number) {
   const len = list.length
   let left = -1
   let right = len

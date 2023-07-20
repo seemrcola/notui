@@ -2,11 +2,13 @@ import type { Ref } from 'vue'
 import { bs } from './utils'
 import { FILLED_INDEX } from './constants'
 
-export function updateDesc(
+import type { Desc } from './types'
+
+export function updateDesc<T>(
   dynamic: boolean,
   containerEl: HTMLElement,
   filledEl: HTMLElement,
-  dynamicListDesc: Ref<any[]>,
+  dynamicListDesc: Ref<Desc<T>[]>,
 ) {
   if (!dynamic)
     return 'no need to update'
@@ -51,7 +53,7 @@ function changeFilledElHeight(diff: number, filledEl: HTMLElement) {
 }
 
 // 初始化所有列表项--动态高度
-export function initAllListDesc(list: any[], itemHeight: number) {
+export function initAllListDesc<T>(list: T[], itemHeight: number): Desc<T>[] {
   return list.map((item, index) => {
     return {
       height: itemHeight,
@@ -63,8 +65,8 @@ export function initAllListDesc(list: any[], itemHeight: number) {
   })
 }
 
-export function calcDynamicStartEnd(
-  dynamicListDesc: Ref<any[]>,
+export function calcDynamicStartEnd<T>(
+  dynamicListDesc: Ref<Desc<T>[]>,
   vitrualOffset: number,
   containerHeight: number,
 ) {

@@ -1,3 +1,4 @@
+import type { Ref } from 'vue'
 import { computed, nextTick, ref } from 'vue'
 import { scrollWrapper as scrollWrapperFn, scrollbar as scrollbarFn } from './scrollbar'
 import { throttle } from './utils'
@@ -9,12 +10,12 @@ interface Options {
   throttleTime?: number // 节流时间
 }
 
-export function useVirtualList(list: any[], selector: string, options: Options) {
+export function useVirtualList<T = any>(list: T[], selector: string, options: Options) {
   // 滚动相关变量>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   const { itemHeight, containerHeight, throttleTime = 16 } = options
   let virtualOffset = 0 // 滚动高度
   const renderOffset = ref(0) // 渲染偏移量
-  const renderList = ref<any[]>([]) // 渲染列表
+  const renderList: Ref<T[]> = ref([]) // 渲染列表
   const RENDER_COUNT = Math.ceil(containerHeight / itemHeight) // 渲染数量
 
   // 滚动条相关变量>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -88,7 +89,7 @@ export function useVirtualList(list: any[], selector: string, options: Options) 
     return [start - 1, end + 1]
   }
 
-  function render(items: any[]) {
+  function render(items: T[]) {
     renderList.value = items
   }
 

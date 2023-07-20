@@ -1,12 +1,8 @@
+import type { Ref } from 'vue'
 import { computed, nextTick, onUpdated, ref } from 'vue'
 import { calcDynamicStartEnd, initAllListDesc, updateDesc } from './dynamic'
+import type { Desc, Options } from './types'
 import { FILLED_INDEX, FILLED_NAME } from './constants'
-
-interface Options {
-  itemHeight: number // 单个元素高度
-  containerHeight: number // 容器高度
-  dynamic?: boolean // 是否动态高度
-}
 
 export function useVirtualList<T = any>(list: T[], selector: string, options: Options) {
   let { itemHeight, containerHeight, dynamic = false } = options
@@ -15,12 +11,14 @@ export function useVirtualList<T = any>(list: T[], selector: string, options: Op
   const HEIGHT_SUM = list.length * itemHeight // 总高度
   const RENDER_COUNT = Math.ceil(containerHeight / itemHeight) // 渲染数量
 
-  const renderList = ref<T[]>([])
+  // 定高相关变量
+  const renderList: Ref<T[]> = ref([])
   const translateY = ref(0)
   const BUFFER = RENDER_COUNT > 15 ? 15 : RENDER_COUNT // 缓冲区设置个最大值
 
-  const dynamicListDesc = ref<T[]>([])
-  const dynamicList = ref<T[]>([])
+  // 动态相关变量
+  const dynamicListDesc: Ref<Desc<T>[]> = ref([])
+  const dynamicList: Ref<Desc<T>[]> = ref([])
   let filledEl: HTMLElement
 
   function initContainer() {
