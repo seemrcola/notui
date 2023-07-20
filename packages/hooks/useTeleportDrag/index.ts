@@ -5,20 +5,18 @@ import type { Ref } from 'vue'
 import { ref, watch } from 'vue'
 
 export interface UseTeleportDragResult {
-  mousedownHanlder: (event: MouseEvent) => void
   dragFlag: Ref<boolean>
 }
 
 export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
   const dragFlag = ref(false)
-  let skewing: { x: number; y: number }
+  let skewing = { x: 0, y: 0 }
 
   const unwatch = watch(
     () => domRef.value,
     (val) => {
       if (val) {
         val.addEventListener('mousedown', mousedownHanlder)
-
         unwatch()
       }
     },
@@ -57,7 +55,6 @@ export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
   }
 
   return {
-    mousedownHanlder,
     dragFlag,
   }
 }

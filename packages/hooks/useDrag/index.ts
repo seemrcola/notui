@@ -2,8 +2,8 @@ import type { Ref } from 'vue'
 import { ref, watch } from 'vue'
 
 export interface UseDragResult {
-  mousedownHanlder: (event: MouseEvent) => void
   dragFlag: Ref<boolean>
+  coordinate: { x: number; y: number }
 }
 
 export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
@@ -63,7 +63,7 @@ export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
   }
 
   return {
-    mousedownHanlder,
     dragFlag,
+    coordinate: dragStart,
   }
 }

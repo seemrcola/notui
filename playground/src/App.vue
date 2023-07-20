@@ -1,10 +1,7 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
-
 import { useDrag, useTeleportDrag } from '@notui/hooks'
-
-// import { useTeleportDrag } from '@notui/hooks/useTeleportDrag'
-// import { useDrag } from '@notui/hooks/useDrag'
+import Adsorb from '@notui/components/Adsorb/src/index.vue'
 import Header from './components/Header.vue'
 
 const drag = ref(null)
@@ -32,6 +29,8 @@ const { mousedownHanlder: mousedownHanlder2 } = useDrag(drag2, parent)
         @mousedown="mousedownHanlder"
       />
     </Teleport>
+
+    <Adsorb />
 
     <div
       ref="drag2"
