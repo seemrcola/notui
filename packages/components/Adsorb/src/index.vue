@@ -54,6 +54,11 @@ function mouseupHandler(e: MouseEvent) {
     adsorb()
   }
 }
+function contextmenuHandler(e: MouseEvent) {
+  e.preventDefault()
+  e.stopPropagation()
+  moveLock.value = false
+}
 
 const computedStyle = computed(() => {
   return {
@@ -107,6 +112,8 @@ onMounted(() => {
     windowRect.height = window.innerHeight
     windowRect.width = window.innerWidth
   })
+  // 初始化位置
+  adsorb()
 })
 </script>
 
@@ -138,6 +145,7 @@ onMounted(() => {
       :class="bem.block('bar')"
       @dblclick="showContent(!show)"
       @mousedown="mousedownHandler"
+      @contextmenu="contextmenuHandler"
     >
       <slot name="bar" :class="bem.element('bar-slot')">
         <div i-ic:outline-send-time-extension text-xl bg-white />

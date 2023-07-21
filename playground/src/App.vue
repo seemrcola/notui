@@ -19,6 +19,7 @@ useDrag(drag2, parent)
     <NoMoveable text-center>
       test
     </NoMoveable>
+
     <NoTiresomeTag />
 
     <Teleport to="body">
@@ -28,11 +29,11 @@ useDrag(drag2, parent)
       />
     </Teleport>
 
-    <Adsorb>
+    <NoAdsorb>
       <template #bar>
         jajaj
       </template>
-    </Adsorb>
+    </NoAdsorb>
 
     <div
       ref="drag2"
