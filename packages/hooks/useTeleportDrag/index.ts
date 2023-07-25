@@ -20,6 +20,7 @@ export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
         unwatch()
       }
     },
+    { immediate: true },
   )
 
   function mousedownHanlder(e: MouseEvent) {
