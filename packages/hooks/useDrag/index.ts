@@ -6,9 +6,13 @@ export interface UseDragResult {
   coordinate: { x: number; y: number }
 }
 
-export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
+export function useDrag(domRef: Ref<any>, parentRef?: Ref<any>): UseDragResult {
   const dragFlag = ref(false)
   const dragStart = { x: 0, y: 0 }
+
+  // 如果没有传入父元素的ref，则默认为body
+  if (!parentRef)
+    parentRef = ref(document.body)
 
   const unwatch = watch(
     () => domRef.value,
@@ -16,13 +20,15 @@ export function useDrag(domRef: Ref<any>, parentRef: Ref<any>): UseDragResult {
       if (val) {
         val.addEventListener('mousedown', mousedownHanlder)
         const { left, top } = domRef.value.getBoundingClientRect()
-        const { left: parentLeft, top: parentTop } = parentRef.value.getBoundingClientRect()
+        const { left: parentLeft, top: parentTop } = parentRef!.value.getBoundingClientRect()
+        // 这里用户如果用了transform，那么就会出现问题，因为getBoundingClientRect获取的是元素在视口中的位置，而不是在文档中的位置
         domRef.value.style.left = `${left - parentLeft}px`
         domRef.value.style.top = `${top - parentTop}px`
 
         unwatch()
       }
     },
+    { immediate: true },
   )
 
   function mousedownHanlder(e: MouseEvent) {
