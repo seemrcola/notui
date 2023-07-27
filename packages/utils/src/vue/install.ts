@@ -1,6 +1,5 @@
-import type { Plugin } from 'vue'
-
-export type SFCWithInstall<T> = T & Plugin
+import type { App } from 'vue'
+import type { SFCInstallWithContext, SFCWithInstall } from '../../types'
 
 export function withInstall<T, E extends Record<string, any>>(main: T,
   extra?: E) {
@@ -14,4 +13,13 @@ export function withInstall<T, E extends Record<string, any>>(main: T,
       (main as any)[key] = comp
   }
   return main as SFCWithInstall<T> & E
+}
+
+export function withInstallFunction<T>(fn: T, name: string) {
+  (fn as SFCWithInstall<T>).install = (app: App) => {
+    (fn as SFCInstallWithContext<T>)._context = app._context
+    app.config.globalProperties[name] = fn
+  }
+
+  return fn as SFCInstallWithContext<T>
 }

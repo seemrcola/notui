@@ -1,7 +1,7 @@
-<script setup lang='ts'>
+<script setup lang='ts' name="NoMoveable">
 // 拖动和缩放的start坐标实际上可以共用，因为每次操作的时候，只会有一个生效，但是为了方便理解，还是分开写
 import { computed, ref } from 'vue'
-import { createNamespace } from '@notui/utils/src/bems'
+import { createNamespace } from '@notui/utils'
 import { moveProps } from './props'
 
 const props = defineProps(moveProps)

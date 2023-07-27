@@ -1,6 +1,6 @@
-<script setup lang="ts">
+<script setup lang="ts" name="NoAdsorb">
 import { computed, nextTick, onMounted, ref } from 'vue'
-import { createNamespace } from '@notui/utils/src/bems'
+import { createNamespace } from '@notui/utils'
 import { adsorbProps } from './props'
 
 const props = defineProps(adsorbProps)

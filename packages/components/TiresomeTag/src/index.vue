@@ -1,4 +1,4 @@
-<script setup lang='ts'>
+<script setup lang='ts' name="NoTiresomeTag">
 import { onUnmounted, ref } from 'vue'
 import { createNamespace } from '@notui/utils'
 import { tTagProps } from './props'

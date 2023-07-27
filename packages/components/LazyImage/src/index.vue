@@ -1,6 +1,6 @@
-<script setup lang='ts'>
+<script setup lang='ts' name="NoLazyImage">
 import { onMounted } from 'vue'
-import { createNamespace } from '@notui/utils/src/bems'
+import { createNamespace } from '@notui/utils'
 import { lazyImagesProps } from './props'
 import type { ImageDesc } from './props'
 

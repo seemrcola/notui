@@ -1,6 +1,6 @@
-<script setup lang='ts'>
+<script setup lang='ts' name="NoIcon">
 import { onMounted, ref } from 'vue'
-import { createNamespace } from '@notui/utils/src/bems'
+import { createNamespace } from '@notui/utils'
 import { iconProps } from './props'
 
 const props = defineProps(iconProps)

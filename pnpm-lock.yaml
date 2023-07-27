@@ -84,6 +84,9 @@ importers:
       notui:
         specifier: workspace:*
         version: link:..
+      onu-ui:
+        specifier: 1.0.14-beta.2
+        version: 1.0.14-beta.2(vue@3.3.4)
       unocss:
         specifier: ^0.53.3
         version: 0.53.3(postcss@8.4.24)(vite@4.3.9)
@@ -855,6 +858,29 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+
+  /@onu-ui/components@1.0.14-beta.2(vue@3.3.4):
+    resolution: {integrity: sha512-kFCJEshxJjNs2NvfONlDfVOIOgKbX2hGNUXDs1lORQRlP110ZgJKZCI+9qLNHIPSWS+ifWL1gLwjWSpyp4/jTQ==}
+    dependencies:
+      '@onu-ui/preset': 1.0.14-beta.2
+      '@onu-ui/utils': 1.0.14-beta.2(vue@3.3.4)
+      '@vueuse/core': 9.13.0(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
+  /@onu-ui/preset@1.0.14-beta.2:
+    resolution: {integrity: sha512-DxyN7+/hqoJuDv64TT+I1XII0QoCO/4wQoZsKeqgld7JGKv1ti3UlipXVhPWTDZE9g1ETyZPJW4oPgDX7z/a4A==}
+    dev: false
+
+  /@onu-ui/utils@1.0.14-beta.2(vue@3.3.4):
+    resolution: {integrity: sha512-Ddu1TWt32y6oDngv7o6MUjclV9GHKJeOS26GzClQYi14UKBxNJOLIo3fhG9J/R7omRNZH9QOY81myrPeHLoU4w==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.3.4
+    dev: false
 
   /@polka/url@1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
@@ -3240,6 +3266,15 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       mimic-fn: 2.1.0
+    dev: false
+
+  /onu-ui@1.0.14-beta.2(vue@3.3.4):
+    resolution: {integrity: sha512-BfpznGkVkhXzCHNLsXugPbRJeUFThHd89cX5vqqLOy0YJ9dW96gRiXObfd24KZ3zzawlNbmoYB3nLTkt2EpZ2Q==}
+    dependencies:
+      '@onu-ui/components': 1.0.14-beta.2(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
     dev: false
 
   /optionator@0.9.1:

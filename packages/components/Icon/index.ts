@@ -1,8 +1,7 @@
 import { withInstall } from '@notui/utils'
 import Icon from './src/index.vue'
 
-Icon.name = 'NoIcon'
 export const NoIcon = withInstall(Icon)
-export default NoIcon
+export default Icon
 
 export * from './src/props'
