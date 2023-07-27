@@ -7,12 +7,12 @@
   "keywords": [],
   "main": "./dist/lib/notui.cjs",
   "module": "./dist/es/notui.mjs",
-  "types": "./dist/components/index.d.ts",
+  "types": "./dist/types/components/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "vite build & npx tsc"
+    "build": "vue-tsc --declaration --emitDeclarationOnly --skipLibCheck && vite build "
   },
   "peerDependencies": {
     "vue": "^3.2.0"
