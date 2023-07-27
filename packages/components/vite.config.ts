@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -7,7 +8,7 @@ export default defineConfig({
   build: {
     emptyOutDir: false,
     lib: {
-      entry: 'index.ts',
+      entry: resolve(__dirname, 'index.ts'),
       name: '@notui/components',
       formats: ['cjs', 'es'],
       fileName: format => format === 'es' ? 'es/notui.mjs' : 'lib/notui.cjs',
