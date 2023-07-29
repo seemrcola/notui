@@ -2,7 +2,7 @@
 * 注意：将需要drag的元素telleport到body下, 传入dom即可实现拖拽
 */
 import type { Ref } from 'vue'
-import { ref, watch } from 'vue'
+import { onScopeDispose, ref, watch } from 'vue'
 
 export interface UseTeleportDragResult {
   dragFlag: Ref<boolean>
@@ -54,6 +54,8 @@ export function useTeleportDrag(domRef: Ref<any>): UseTeleportDragResult {
     document.removeEventListener('mousemove', mousemoveHanlder)
     document.removeEventListener('mouseup', mouseupHanlder)
   }
+
+  onScopeDispose(() => unwatch())
 
   return {
     dragFlag,

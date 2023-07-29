@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import { ref, watch } from 'vue'
+import { onScopeDispose, ref, watch } from 'vue'
 
 export interface UseDragResult {
   dragFlag: Ref<boolean>
@@ -87,6 +87,8 @@ export function useDrag(
     document.removeEventListener('mousemove', mousemoveHanlder)
     document.removeEventListener('mouseup', mouseupHanlder)
   }
+
+  onScopeDispose(() => unwatch())
 
   return {
     dragFlag,
