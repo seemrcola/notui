@@ -5,9 +5,12 @@
   "author": "seemrcola",
   "license": "ISC",
   "keywords": [],
-  "main": "index.js",
+  "main": "./dist/hooks.umd.js",
+  "module": "./dist/hooks.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "vite build & npx tsc"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npx vue-tsc && vite build "
   },
   "dependencies": {
     "vite": "^4.3.9"
