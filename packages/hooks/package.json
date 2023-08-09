@@ -10,7 +10,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run clean && npx vue-tsc && vite build "
+    "build": "npm run clean && vite build && npx vue-tsc  "
   },
   "dependencies": {
     "vite": "^4.3.9"
