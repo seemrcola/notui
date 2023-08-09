@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "npm run cleab && vue-tsc --declaration --emitDeclarationOnly --skipLibCheck && vite build "
+    "build": "npm run clean && vue-tsc --declaration --emitDeclarationOnly --skipLibCheck && vite build "
   },
   "peerDependencies": {
     "vue": "^3.2.0"
