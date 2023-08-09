@@ -125,7 +125,11 @@ function mouseupScaleHandler(e: MouseEvent) {
 
 <template>
   <div
-    :class="{ selected, 'moveable-wrapper': !selected, [bem.block('wrapper')]: true }"
+    :class="{
+      'selected': selected,
+      'moveable-wrapper': selected,
+      [bem.block('wrapper')]: true,
+    }"
     :style="scaleableStyle"
     absolute z-2147483647
     @click="clickHanlder"

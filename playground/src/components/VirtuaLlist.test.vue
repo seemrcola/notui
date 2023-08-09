@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import { useVirtualList } from '@notui/hooks/useVirtualList'
+import { useVirtualList } from '@notui/hooks'
 
 function generateRandomText() {
   let text = ''
