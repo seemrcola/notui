@@ -10,7 +10,7 @@
   ],
   "compilerOptions": {
     "declaration": true, // 表示是否生成 .d.ts 文件
-    "declarationDir": "./dist", // 表示生成 .d.ts 文件的目录
+    "declarationDir": "./dist/types", // 表示生成 .d.ts 文件的目录
     "declarationMap": false, // 表示是否生成 .d.ts.map 文件
     "emitDeclarationOnly": true, // 表示是否只生成 .d.ts 文件
     "disableSolutionSearching": true, // 表示是否禁用解决方案搜索
