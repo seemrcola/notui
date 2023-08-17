@@ -1,8 +1,11 @@
 <script setup lang="ts" name="NoAdsorb">
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
+import { createNamespace } from '@notui/utils'
 import { adsorbProps } from './props'
 
 const props = defineProps(adsorbProps)
+
+const bem = createNamespace('adsorb')
 
 const init = ref({
   x: props.x,
@@ -127,12 +130,13 @@ onUnmounted(() => {
     <div
       v-if="show"
       ref="contentRef"
+      :class="bem.block('content')"
       shadow="md"
       absolute
       :style="{ height: `${props.height}px`, width: `${props.width}px` }"
     >
       <slot name="content">
-        <div p-1 text-center>
+        <div p-1 text-center :class="bem.element('slot')">
           replace me
         </div>
       </slot>
@@ -141,6 +145,7 @@ onUnmounted(() => {
   <Teleport to="body">
     <div
       ref="dragRef"
+      :class="bem.block('drag')"
       class="w-10 h-10 rounded-full shadow cursor-pointer border-none"
       bg="teal-600 hover:teal-700"
       flex justify-center items-center
@@ -151,7 +156,7 @@ onUnmounted(() => {
       @contextmenu="contextmenuHandler"
     >
       <slot name="bar">
-        <div i-ic:outline-send-time-extension text-xl bg-white />
+        <div i-ic:outline-send-time-extension text-xl bg-white :class="bem.element('slot-icon')" />
       </slot>
     </div>
   </Teleport>
