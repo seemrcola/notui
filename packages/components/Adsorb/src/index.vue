@@ -1,16 +1,16 @@
 <script setup lang="ts" name="NoAdsorb">
-import { computed, nextTick, onMounted, ref } from 'vue'
-import { createNamespace } from '@notui/utils'
+import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { adsorbProps } from './props'
 
 const props = defineProps(adsorbProps)
-
-const bem = createNamespace('adsorb')
 
 const init = ref({
   x: props.x,
   y: props.y,
 })
+
+const windowRect = { height: 0, width: 0 }
+const dragRect = { height: 0, width: 0 }
 
 const show = ref(false)
 const dragRef = ref<HTMLElement | null>(null)
@@ -69,21 +69,18 @@ const computedStyle = computed(() => {
 // ----------------------------------------------------------------
 
 // 显示隐藏--------------------------------------------------------
-let rect = { height: 0, width: 0 }
 function showContent(ifShow: boolean) {
   if (!ifShow)
     return show.value = false
 
   show.value = true
   nextTick(() => {
-    const { width, height } = rect
+    const { width, height } = dragRect
     let top = init.value.y - props.height + height / 2
     // 超过window或者小于0, 则取边界
     if (top < 0)
       top = 0
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     if (top > windowRect.height - props.height)
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       top = windowRect.height - props.height
     contentRef.value!.style.left = `${init.value.x - props.width + width / 2}px`
     contentRef.value!.style.top = `${top}px`
@@ -94,26 +91,34 @@ function showContent(ifShow: boolean) {
 // 吸附---------------------------------------------------------------
 function adsorb() {
   dragRef.value!.style.transition = 'all 0.4s'
-  // eslint-disable-next-line @typescript-eslint/no-use-before-define
-  init.value.x = windowRect.width - rect.width
+
+  init.value.x = windowRect.width - dragRect.width
 }
 // -------------------------------------------------------------------
 
-const windowRect = { height: 0, width: 0 }
-onMounted(() => {
-  // 获取拖动元素的宽高
-  const { height, width } = dragRef.value!.getBoundingClientRect()
-  rect = { height, width }
-  // 获取窗口宽高
+function resize() {
   windowRect.height = window.innerHeight
   windowRect.width = window.innerWidth
-  // 监听窗口变化
-  window.addEventListener('resize', () => {
-    windowRect.height = window.innerHeight
-    windowRect.width = window.innerWidth
-  })
+  adsorb()
+}
+function initdragRect() {
+  const { height, width } = dragRef.value!.getBoundingClientRect()
+  dragRect.height = height
+  dragRect.width = width
+}
+onMounted(() => {
+  // 获取拖动元素的宽高
+  initdragRect()
+  // 获取窗口宽高
+  resize()
   // 初始化位置
   adsorb()
+  // 监听窗口变化
+  window.addEventListener('resize', resize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resize)
 })
 </script>
 
@@ -125,9 +130,8 @@ onMounted(() => {
       shadow="md"
       absolute
       :style="{ height: `${props.height}px`, width: `${props.width}px` }"
-      :class="bem.block('content')"
     >
-      <slot name="content" :class="bem.element('slot-content')">
+      <slot name="content">
         <div p-1 text-center>
           replace me
         </div>
@@ -142,12 +146,11 @@ onMounted(() => {
       flex justify-center items-center
       absolute
       :style="computedStyle"
-      :class="bem.block('bar')"
       @dblclick="showContent(!show)"
       @mousedown="mousedownHandler"
       @contextmenu="contextmenuHandler"
     >
-      <slot name="bar" :class="bem.element('bar-slot')">
+      <slot name="bar">
         <div i-ic:outline-send-time-extension text-xl bg-white />
       </slot>
     </div>
