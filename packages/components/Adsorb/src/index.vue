@@ -46,6 +46,8 @@ function mousemoveHandler(e: MouseEvent) {
   init.value.x += delta.x
   init.value.y += delta.y
 
+  ifOverflow()
+
   dragRef.value!.style.transition = 'none'
 }
 function mouseupHandler(e: MouseEvent) {
@@ -61,6 +63,13 @@ function contextmenuHandler(e: MouseEvent) {
   e.preventDefault()
   e.stopPropagation()
   moveLock.value = false
+}
+function ifOverflow() {
+  const { height, width } = dragRect
+  const { x, y } = init.value
+  const { height: wHeight, width: wWidth } = windowRect
+  init.value.x = Math.min(Math.max(x, 0), wWidth - width)
+  init.value.y = Math.min(Math.max(y, 0), wHeight - height)
 }
 
 const computedStyle = computed(() => {
