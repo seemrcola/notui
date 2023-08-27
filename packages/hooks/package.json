@@ -5,8 +5,8 @@
   "author": "seemrcola",
   "license": "ISC",
   "keywords": [],
-  "main": "./dist/hooks.cjs",
-  "module": "./dist/hooks.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/types/index.d.ts",
   "scripts": {
     "clean": "rm -rf dist",

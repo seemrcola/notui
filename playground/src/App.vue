@@ -1,8 +1,12 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
 import { useDrag, useTeleportDrag } from '@notui/hooks'
-import { NoAdsorb, NoMoveable, NoTiresomeTag } from '@notui/components'
+import { NoAdsorb, NoLazyImage, NoMoveable, NoTiresomeTag } from '@notui/components'
 import Header from './components/Header.vue'
+
+import data from './assets/img.json'
+
+console.log(data)
 
 const drag = ref(null)
 const drag2 = ref(null)
@@ -38,4 +42,6 @@ useDrag(drag2, parent)
       bg-blue rounded-full w-10 h-10 absolute
     />
   </div>
+
+  <NoLazyImage :images="data" :col="6" :col-width="140" />
 </template>
