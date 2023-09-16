@@ -24,7 +24,7 @@ export function useDrag(
   /* 父元素 dom 是指定位上的父级 */
   parentRef?: Ref<any> | null,
   /* watch 是否长时间执行 如果不是使用在dialog等会弹出消失的元素上 使用默认值false就行 */
-  watchLonger?: Boolean,
+  watchLonger?: boolean,
 ): UseDragResult {
   const dragFlag = ref(false)
   const dragStart = { x: 0, y: 0 }
